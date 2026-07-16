@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Reler</title>
-
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
@@ -19,7 +19,7 @@
     </div>
 
     <div class="reler-form">
-        <h2>Bem-vindo de volta!</h2>
+        <h2>Bem-vindo!</h2>
         <p class="subtitle">Faça login para acessar o sistema.</p>
 
         @if ($errors->any())
