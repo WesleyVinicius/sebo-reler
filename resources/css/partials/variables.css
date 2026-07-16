@@ -1,0 +1,14 @@
+:root {
+    --reler-bg-page: #dcd3c2;
+    --reler-bg-left: #f1ece2;
+    --reler-bg-right: #fdfcfa;
+    --reler-text-dark: #3a352c;
+    --reler-text-muted: #8c8577;
+    --reler-border: #ddd6c6;
+    --reler-accent: #7c7256;
+    --reler-accent-hover: #6b6247;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+}
