@@ -87,56 +87,10 @@
 
     </div>
 
-    {{-- Modal único, reutilizado para cadastro e edição --}}
-    <div class="modal fade" id="generoModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <form id="formGenero" method="POST" action="{{ route('generos.store') }}">
-                    @csrf
-                    <div id="metodoSpoof"></div>
-
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="generoModalTitulo">Cadastrar Gênero</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label class="form-label">Nome *</label>
-                            <input type="text" name="nome" id="generoNome" class="form-control" required maxlength="60">
-                        </div>
-
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-reler">Salvar Gênero</button>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-    </div>
+    @include('generos._modal-form')
 
 @endsection
 
 @section('scripts')
-    <script>
-        document.getElementById('btnCadastrarGenero').addEventListener('click', function () {
-            document.getElementById('generoModalTitulo').innerText = 'Cadastrar genero';
-            document.getElementById('formGenero').action = "{{ route('generos.store') }}";
-            document.getElementById('metodoSpoof').innerHTML = '';
-            document.getElementById('generoNome').value = '';
-        });
-
-        document.querySelectorAll('.btn-editar-genero').forEach(function (botao) {
-            botao.addEventListener('click', function () {
-                document.getElementById('generoModalTitulo').innerText = 'Editar genero';
-                document.getElementById('formGenero').action = '/generos/' + botao.dataset.id;
-                document.getElementById('metodoSpoof').innerHTML = '@method('PUT')';
-                document.getElementById('generoNome').value = botao.dataset.nome;
-            });
-        });
-    </script>
+    @include('generos._modal-scripts')
 @endsection
