@@ -17,7 +17,6 @@
         <aside class="app-sidebar">
             <div class="sidebar-brand">
                 <img src="{{ asset('images/logo_reler.png') }}" alt="Reler">
-                <span class="brand-name">RELER</span>
             </div>
 
             <nav class="sidebar-nav">

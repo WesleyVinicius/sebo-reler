@@ -20,7 +20,7 @@
                 <h3 class="mb-0">Gêneros cadastrados</h3>
             </div>
             <div class="d-flex gap-2">
-                <button type="button" id="btnCadastrarGenero" class="btn btn-reler" data-bs-toggle="modal" data-bs-target="#generoModal">
+                <button type="button" id="btnCadastrarGenero" class="btn btn-accent" data-bs-toggle="modal" data-bs-target="#generoModal">
                     <i class="bi bi-plus-lg"></i> Cadastrar Gênero
                 </button>
                 <form method="POST" action="{{ route('generos.destroyAll') }}" class="form-confirmar d-inline" data-confirm-message="Tem certeza que deseja excluir TODOS os gêneros? Essa ação não pode ser desfeita.">

@@ -20,7 +20,7 @@
                 <h3 class="mb-0">Clientes cadastrados</h3>
             </div>
             <div class="d-flex gap-2">
-                <button type="button" id="btnCadastrarCliente" class="btn btn-reler" data-bs-toggle="modal" data-bs-target="#clienteModal">
+                <button type="button" id="btnCadastrarCliente" class="btn btn-accent" data-bs-toggle="modal" data-bs-target="#clienteModal">
                     <i class="bi bi-plus-lg"></i> Cadastrar cliente
                 </button>
                 <form method="POST" action="{{ route('clientes.destroyAll') }}" class="form-confirmar d-inline" data-confirm-message="Tem certeza que deseja excluir TODOS os clientes? Essa ação não pode ser desfeita.">
@@ -43,7 +43,6 @@
         <table class="table panel-table align-middle">
             <thead>
             <tr>
-                <th>ID</th>
                 <th>Nome</th>
                 <th>CPF</th>
                 <th class="text-end">Ações</th>
@@ -52,7 +51,6 @@
             <tbody>
             @forelse ($clientes as $cliente)
                 <tr>
-                    <td>{{ $cliente->id }}</td>
                     <td>{{ $cliente->nome }}</td>
                     <td>{{ $cliente->cpf }}</td>
                     <td class="text-end">

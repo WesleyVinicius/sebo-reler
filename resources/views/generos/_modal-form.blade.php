@@ -22,7 +22,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-reler">Salvar Gênero</button>
+                    <button type="submit" class="btn btn-accent">Salvar Gênero</button>
                 </div>
             </form>
 
