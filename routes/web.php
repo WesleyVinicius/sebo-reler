@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EditoraController;
 use App\Http\Controllers\GeneroController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,4 +27,8 @@ Route::middleware(['auth:funcionario'])->group(function () {
     // Rotas CRUD generos
     Route::delete('generos/destruir-todos', [GeneroController::class, 'destroyAll'])->name('generos.destroyAll');
     Route::resource('generos', GeneroController::class)->only(['index', 'store', 'update', 'destroy']);
+
+    //Rotas CRUD editoras
+    Route::delete('editoras/destruir-todos', [EditoraController::class, 'destroyAll'])->name('editoras.destroyAll');
+    Route::resource('editoras', EditoraController::class)->only(['index', 'store', 'update', 'destroy']);
 });
