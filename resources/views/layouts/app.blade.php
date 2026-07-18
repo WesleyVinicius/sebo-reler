@@ -33,7 +33,7 @@
                 <a href="#" class="nav-item">
                     <i class="bi bi-bank nav-icon"></i> Editoras
                 </a>
-                <a href="#" class="nav-item">
+                <a href="{{ route('generos.index') }}" class="nav-item">
                     <i class="bi bi-tag nav-icon"></i> Gêneros
                 </a>
                 <a href="#" class="nav-item">
