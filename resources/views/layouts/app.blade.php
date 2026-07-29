@@ -35,7 +35,7 @@
                 <a href="{{ route('generos.index') }}" class="nav-item">
                     <i class="bi bi-tag nav-icon"></i> Gêneros
                 </a>
-                <a href="#" class="nav-item">
+                <a href="{{ route('conservacoes.index') }}" class="nav-item">
                     <i class="bi bi-check-circle nav-icon"></i> Estado de Conservação
                 </a>
                 <a href="#" class="nav-item">

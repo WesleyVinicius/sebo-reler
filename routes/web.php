@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ConservacaoController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EditoraController;
 use App\Http\Controllers\GeneroController;
@@ -31,4 +32,8 @@ Route::middleware(['auth:funcionario'])->group(function () {
     //Rotas CRUD editoras
     Route::delete('editoras/destruir-todos', [EditoraController::class, 'destroyAll'])->name('editoras.destroyAll');
     Route::resource('editoras', EditoraController::class)->only(['index', 'store', 'update', 'destroy']);
+
+    // Rotas CRUD estado de conservação
+    Route::delete('/conservacoes/destruir-todos', [ConservacaoController::class, 'destroyAll'])->name('conservacoes.destroyAll');
+    Route::resource('conservacoes', ConservacaoController::class)->parameters(['conservacoes' => 'conservacao'])->only(['index', 'store', 'update', 'destroy']);
 });
