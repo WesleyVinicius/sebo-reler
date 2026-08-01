@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AutorController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ConservacaoController;
 use App\Http\Controllers\DashboardController;
@@ -36,4 +37,8 @@ Route::middleware(['auth:funcionario'])->group(function () {
     // Rotas CRUD estado de conservação
     Route::delete('/conservacoes/destruir-todos', [ConservacaoController::class, 'destroyAll'])->name('conservacoes.destroyAll');
     Route::resource('conservacoes', ConservacaoController::class)->parameters(['conservacoes' => 'conservacao'])->only(['index', 'store', 'update', 'destroy']);
+
+    // Rotas CRUD autores
+    Route::delete('/autores/destruir-todos', [AutorController::class, 'destroyAll'])->name('autores.destroyAll');
+    Route::resource('autores', AutorController::class)->parameters(['autores' => 'autor'])->only(['index', 'store', 'update', 'destroy']);
 });

@@ -26,7 +26,7 @@
                 <a href="#" class="nav-item">
                     <i class="bi bi-book nav-icon"></i> Livros
                 </a>
-                <a href="#" class="nav-item">
+                <a href="{{ route('autores.index') }}" class="nav-item">
                     <i class="bi bi-pen nav-icon"></i> Autores
                 </a>
                 <a href="{{ route('editoras.index') }}" class="nav-item">
