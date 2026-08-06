@@ -6,6 +6,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ConservacaoController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EditoraController;
+use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\GeneroController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,4 +42,8 @@ Route::middleware(['auth:funcionario'])->group(function () {
     // Rotas CRUD autores
     Route::delete('/autores/destruir-todos', [AutorController::class, 'destroyAll'])->name('autores.destroyAll');
     Route::resource('autores', AutorController::class)->parameters(['autores' => 'autor'])->only(['index', 'store', 'update', 'destroy']);
+
+    // Rotas CRUD funcionários
+    Route::delete('/funcionarios/destruir-todos', [FuncionarioController::class, 'destroyAll'])->name('funcionarios.destroyAll');
+    Route::resource('funcionarios', FuncionarioController::class)->parameters(['funcionarios' => 'funcionario'])->only(['index', 'store', 'update', 'destroy']);
 });

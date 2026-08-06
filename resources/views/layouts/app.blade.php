@@ -44,6 +44,9 @@
                 <a href="{{ route('clientes.index') }}" class="nav-item">
                     <i class="bi bi-people nav-icon"></i> Clientes
                 </a>
+                <a href="{{ route('funcionarios.index') }}" class="nav-item">
+                    <i class="bi bi-people nav-icon"></i> Funcionários
+                </a>
                 <a href="#" class="nav-item">
                     <i class="bi bi-bar-chart nav-icon"></i> Relatórios
                 </a>
