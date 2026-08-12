@@ -43,18 +43,20 @@
                 <a href="{{ route('clientes.index') }}" class="nav-item {{ request()->routeIs('clientes.*') ? 'active' : '' }}">
                     <i class="bi bi-people nav-icon"></i> Clientes
                 </a>
-                <a href="{{ route('funcionarios.index') }}" class="nav-item {{ request()->routeIs('funcionarios.*') ? 'active' : '' }}">
-                    <i class="bi bi-person-badge nav-icon"></i> Funcionários
-                </a>
-                <a href="{{ route('descontos.index') }}" class="nav-item {{ request()->routeIs('descontos.*') ? 'active' : '' }}">
-                    <i class="bi bi-percent nav-icon"></i> Descontos
-                </a>
-                <a href="#" class="nav-item">
-                    <i class="bi bi-bar-chart nav-icon"></i> Relatórios
-                </a>
-                <a href="#" class="nav-item">
-                    <i class="bi bi-gear nav-icon"></i> Configurações
-                </a>
+                @if (Auth::guard('funcionario')->user()?->perfil === 'GERENTE')
+                    <a href="{{ route('funcionarios.index') }}" class="nav-item {{ request()->routeIs('funcionarios.*') ? 'active' : '' }}">
+                        <i class="bi bi-person-badge nav-icon"></i> Funcionários
+                    </a>
+                    <a href="{{ route('descontos.index') }}" class="nav-item {{ request()->routeIs('descontos.*') ? 'active' : '' }}">
+                        <i class="bi bi-percent nav-icon"></i> Descontos
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="bi bi-bar-chart nav-icon"></i> Relatórios
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="bi bi-gear nav-icon"></i> Configurações
+                    </a>
+                @endif
             </nav>
         </aside>
 
