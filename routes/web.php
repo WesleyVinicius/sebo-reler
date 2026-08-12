@@ -5,6 +5,7 @@ use App\Http\Controllers\AutorController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ConservacaoController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DescontoController;
 use App\Http\Controllers\EditoraController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\GeneroController;
@@ -46,4 +47,8 @@ Route::middleware(['auth:funcionario'])->group(function () {
     // Rotas CRUD funcionários
     Route::delete('/funcionarios/destruir-todos', [FuncionarioController::class, 'destroyAll'])->name('funcionarios.destroyAll');
     Route::resource('funcionarios', FuncionarioController::class)->parameters(['funcionarios' => 'funcionario'])->only(['index', 'store', 'update', 'destroy']);
+
+    // Rotas CRUD descontos
+    Route::delete('/descontos/destruir-todos', [DescontoController::class, 'destroyAll'])->name('descontos.destroyAll');
+    Route::resource('descontos', DescontoController::class)->parameters(['descontos' => 'desconto'])->only(['index', 'store', 'update', 'destroy']);
 });

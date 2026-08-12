@@ -13,7 +13,6 @@
 <body class="app-body">
 
     <div class="app-shell">
-
         <aside class="app-sidebar">
             <div class="sidebar-brand">
                 <img src="{{ asset('images/logo_reler.png') }}" alt="Reler">
@@ -26,26 +25,29 @@
                 <a href="#" class="nav-item">
                     <i class="bi bi-book nav-icon"></i> Livros
                 </a>
-                <a href="{{ route('autores.index') }}" class="nav-item">
+                <a href="{{ route('autores.index') }}" class="nav-item {{ request()->routeIs('autores.*') ? 'active' : '' }}">
                     <i class="bi bi-pen nav-icon"></i> Autores
                 </a>
-                <a href="{{ route('editoras.index') }}" class="nav-item">
+                <a href="{{ route('editoras.index') }}" class="nav-item {{ request()->routeIs('editoras.*') ? 'active' : '' }}">
                     <i class="bi bi-bank nav-icon"></i> Editoras
                 </a>
-                <a href="{{ route('generos.index') }}" class="nav-item">
+                <a href="{{ route('generos.index') }}" class="nav-item {{ request()->routeIs('generos.*') ? 'active' : '' }}">
                     <i class="bi bi-tag nav-icon"></i> Gêneros
                 </a>
-                <a href="{{ route('conservacoes.index') }}" class="nav-item">
+                <a href="{{ route('conservacoes.index') }}" class="nav-item {{ request()->routeIs('conservacoes.*') ? 'active' : '' }}">
                     <i class="bi bi-check-circle nav-icon"></i> Estado de Conservação
                 </a>
                 <a href="#" class="nav-item">
                     <i class="bi bi-cart nav-icon"></i> Vendas
                 </a>
-                <a href="{{ route('clientes.index') }}" class="nav-item">
+                <a href="{{ route('clientes.index') }}" class="nav-item {{ request()->routeIs('clientes.*') ? 'active' : '' }}">
                     <i class="bi bi-people nav-icon"></i> Clientes
                 </a>
-                <a href="{{ route('funcionarios.index') }}" class="nav-item">
-                    <i class="bi bi-people nav-icon"></i> Funcionários
+                <a href="{{ route('funcionarios.index') }}" class="nav-item {{ request()->routeIs('funcionarios.*') ? 'active' : '' }}">
+                    <i class="bi bi-person-badge nav-icon"></i> Funcionários
+                </a>
+                <a href="{{ route('descontos.index') }}" class="nav-item {{ request()->routeIs('descontos.*') ? 'active' : '' }}">
+                    <i class="bi bi-percent nav-icon"></i> Descontos
                 </a>
                 <a href="#" class="nav-item">
                     <i class="bi bi-bar-chart nav-icon"></i> Relatórios
@@ -91,6 +93,7 @@
 
     </div>
 
+    {{-- Modal de confirmação genérico — reutilizado em qualquer ação destrutiva do sistema --}}
     <div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
