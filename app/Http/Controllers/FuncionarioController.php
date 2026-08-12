@@ -6,6 +6,7 @@ use App\Models\Funcionario;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class FuncionarioController extends Controller
 {
@@ -34,7 +35,7 @@ class FuncionarioController extends Controller
 
     public function store(Request $request)
     {
-        $dados = $request->validate([
+        $validator = Validator::make($request->all(), [
             'usuario' => 'required|string|max:50|unique:funcionario,usuario',
             'senha' => 'required|string|min:6',
             'cpf' => 'required|digits:11|unique:funcionario,cpf',
@@ -49,18 +50,24 @@ class FuncionarioController extends Controller
             'senha.min' => 'A senha deve ter pelo menos 6 caracteres.',
         ]);
 
+        // AQUI ESTÁ O SEGREDO: Se falhar, nós forçamos o retorno em JSON com status 422
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Os dados fornecidos são inválidos.',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        // Se passar da validação, pegamos os dados limpos
+        $dados = $validator->validated();
+
         $dados['senha'] = Hash::make($dados['senha']);
 
         Funcionario::create($dados);
 
-        $mensagem = 'Funcionário cadastrado com sucesso.';
-
-        if ($request->wantsJson()) {
-            session()->flash('sucesso', $mensagem);
-            return response()->json(['sucesso' => true]);
-        }
-
-        return redirect()->route('funcionarios.index')->with('sucesso', $mensagem);
+        // Como o botão só é acionado via modal/AJAX, você sempre retornará JSON aqui
+        session()->flash('sucesso', 'Funcionário cadastrado com sucesso.');
+        return response()->json(['sucesso' => true]);
     }
 
     public function update(Request $request, Funcionario $funcionario)
