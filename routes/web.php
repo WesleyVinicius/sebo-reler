@@ -9,6 +9,7 @@ use App\Http\Controllers\DescontoController;
 use App\Http\Controllers\EditoraController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\GeneroController;
+use App\Http\Controllers\LivroController;
 use Illuminate\Support\Facades\Route;
 
 // Rotas de login
@@ -43,6 +44,13 @@ Route::middleware(['auth:funcionario'])->group(function () {
     // Rotas CRUD autores
     Route::delete('/autores/destruir-todos', [AutorController::class, 'destroyAll'])->name('autores.destroyAll');
     Route::resource('autores', AutorController::class)->parameters(['autores' => 'autor'])->only(['index', 'store', 'update', 'destroy']);
+
+    // Rotas CRUD livros
+    Route::delete('/livros/destruir-todos', [LivroController::class, 'destroyAll'])->name('livros.destroyAll');
+    Route::get('/livros', [LivroController::class, 'index'])->name('livros.index');
+    Route::post('/livros', [LivroController::class, 'store'])->name('livros.store');
+    Route::put('/livros/{exemplar}', [LivroController::class, 'update'])->name('livros.update');
+    Route::delete('/livros/{exemplar}', [LivroController::class, 'destroy'])->name('livros.destroy');
 
     // Middleware para acesso somente de GERENTES
     Route::middleware('gerente')->group(function () {

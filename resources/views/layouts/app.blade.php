@@ -22,7 +22,7 @@
                 <a href="{{ route('dashboard') }}" class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                     <i class="bi bi-house nav-icon"></i> Dashboard
                 </a>
-                <a href="#" class="nav-item">
+                <a href="{{ route('livros.index') }}" class="nav-item {{ request()->routeIs('livros.*') ? 'active' : '' }}">
                     <i class="bi bi-book nav-icon"></i> Livros
                 </a>
                 <a href="{{ route('autores.index') }}" class="nav-item {{ request()->routeIs('autores.*') ? 'active' : '' }}">
