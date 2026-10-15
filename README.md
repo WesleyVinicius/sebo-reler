@@ -6,7 +6,7 @@ Sistema web para gerenciamento de um sebo (livraria de livros usados), permitind
 
 - Laravel 13 (PHP 8.2+)
 - PostgreSQL
-- Bootstrap 5] + Bootstrap Icons
+- Bootstrap 5 + Bootstrap Icons
 - Vite (compilação de assets)
 - Blade (template engine nativo do Laravel)
 - PHPUnit (testes)
@@ -26,7 +26,7 @@ Antes de instalar, tenha certeza de que sua máquina possui:
 
 # Clonar o repositório
 git clone <url-do-repositorio>
-cd sebo_reler2
+cd sebo_reler
 
 # Instalar dependências do PHP
 composer install
@@ -153,7 +153,7 @@ Este é um projeto pessoal de estudo, mas sugestões e correções são bem-vind
 
 ## Licença
 
-Este projeto não possui uma licença formal definida — uso pessoal e educacional.
+MIT
 
 ## Autor
 
