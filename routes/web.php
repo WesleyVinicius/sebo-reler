@@ -53,6 +53,9 @@ Route::middleware(['auth:funcionario'])->group(function () {
     Route::put('/livros/{exemplar}', [LivroController::class, 'update'])->name('livros.update');
     Route::delete('/livros/{exemplar}', [LivroController::class, 'destroy'])->name('livros.destroy');
 
+    //Rota Etiquetas
+    Route::get('/livros/{exemplar}/etiquetas', [LivroController::class, 'etiquetas'])->name('livros.etiquetas');
+
     // Rotas vendas
     Route::get('vendas/cliente/{cpf}', [VendaController::class, 'buscarCliente'])->name('vendas.buscar-cliente');
     Route::get('vendas/exemplar/{id}', [VendaController::class, 'buscarExemplar'])

@@ -46,6 +46,21 @@ class LivroController extends Controller
         ]);
     }
 
+    public function etiquetas(Exemplar $exemplar)
+    {
+        // Todos os exemplares DISPONÍVEIS do mesmo grupo da linha clicada
+        $exemplares = Exemplar::with(['livro.autores', 'conservacao'])
+            ->where('id_livro', $exemplar->id_livro)
+            ->where('id_conservacao', $exemplar->id_conservacao)
+            ->where('preco_compra', $exemplar->preco_compra)
+            ->where('preco_venda', $exemplar->preco_venda)
+            ->where('status', true)
+            ->orderBy('id')
+            ->get();
+
+        return view('livros.etiquetas', compact('exemplares'));
+    }
+
     public function store(Request $request)
     {
         $dados = $request->validate([
@@ -60,7 +75,7 @@ class LivroController extends Controller
             'quantidade' => 'required|integer|min:1|max:100',
         ]);
 
-        DB::transaction(function () use ($dados) {
+        $primeiroId = DB::transaction(function () use ($dados) {
             $livro = Livro::create([
                 'titulo' => $dados['titulo'],
                 'id_editora' => $dados['id_editora'],
@@ -69,8 +84,10 @@ class LivroController extends Controller
 
             $livro->autores()->attach($dados['autores']);
 
+            $primeiroId = null;
+
             for ($i = 0; $i < $dados['quantidade']; $i++) {
-                Exemplar::create([
+                $exemplar = Exemplar::create([
                     'id_livro' => $livro->id,
                     'id_conservacao' => $dados['id_conservacao'],
                     'id_funcionario' => Auth::guard('funcionario')->id(),
@@ -78,11 +95,16 @@ class LivroController extends Controller
                     'preco_venda' => $dados['preco_venda'],
                     'status' => true,
                 ]);
+
+                $primeiroId ??= $exemplar->id;
             }
+
+            return $primeiroId;
         });
 
         return redirect()->route('livros.index')
-            ->with('sucesso', "Livro cadastrado com {$dados['quantidade']} exemplar(es).");
+            ->with('sucesso', "Livro cadastrado com {$dados['quantidade']} exemplar(es).")
+            ->with('etiquetas', $primeiroId);
     }
 
     public function update(Request $request, Exemplar $exemplar)

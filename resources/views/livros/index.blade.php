@@ -6,7 +6,14 @@
 @section('conteudo')
 
     @if (session('sucesso'))
-        <div class="alert alert-success">{{ session('sucesso') }}</div>
+        <div class="alert alert-success d-flex justify-content-between align-items-center">
+            <span>{{ session('sucesso') }}</span>
+            @if (session('etiquetas'))
+                <a href="{{ route('livros.etiquetas', session('etiquetas')) }}" target="_blank" class="btn btn-sm btn-success">
+                    <i class="bi bi-printer"></i> Imprimir etiquetas
+                </a>
+            @endif
+        </div>
     @endif
 
     @if (session('erro'))
@@ -74,6 +81,11 @@
                         @endif
                     </td>
                     <td class="text-end">
+                        @if ($grupo->status)
+                            <a href="{{ route('livros.etiquetas', $grupo) }}" class="btn btn-sm btn-outline-secondary" title="Imprimir etiquetas" target="_blank">
+                                <i class="bi bi-printer"></i>
+                            </a>
+                        @endif
                         <button type="button"
                                 class="btn btn-sm btn-outline-secondary btn-editar-livro"
                                 data-bs-toggle="modal"

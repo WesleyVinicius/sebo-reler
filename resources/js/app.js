@@ -1,4 +1,6 @@
 import * as bootstrap from 'bootstrap';
+import JsBarcode from 'jsbarcode';
+window.JsBarcode = JsBarcode;
 
 document.addEventListener('DOMContentLoaded', function () {
     const confirmModalEl = document.getElementById('confirmModal');
