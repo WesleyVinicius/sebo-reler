@@ -10,6 +10,7 @@ use App\Http\Controllers\EditoraController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\LivroController;
+use App\Http\Controllers\VendaController;
 use Illuminate\Support\Facades\Route;
 
 // Rotas de login
@@ -51,6 +52,13 @@ Route::middleware(['auth:funcionario'])->group(function () {
     Route::post('/livros', [LivroController::class, 'store'])->name('livros.store');
     Route::put('/livros/{exemplar}', [LivroController::class, 'update'])->name('livros.update');
     Route::delete('/livros/{exemplar}', [LivroController::class, 'destroy'])->name('livros.destroy');
+
+    // Rotas vendas
+    Route::get('vendas/cliente/{cpf}', [VendaController::class, 'buscarCliente'])->name('vendas.buscar-cliente');
+    Route::get('vendas/exemplar/{id}', [VendaController::class, 'buscarExemplar'])
+        ->whereNumber('id')
+        ->name('vendas.buscar-exemplar');
+    Route::resource('vendas', VendaController::class)->only(['index', 'create', 'store', 'show']);
 
     // Middleware para acesso somente de GERENTES
     Route::middleware('gerente')->group(function () {

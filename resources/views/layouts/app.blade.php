@@ -37,7 +37,7 @@
                 <a href="{{ route('conservacoes.index') }}" class="nav-item {{ request()->routeIs('conservacoes.*') ? 'active' : '' }}">
                     <i class="bi bi-check-circle nav-icon"></i> Estado de Conservação
                 </a>
-                <a href="#" class="nav-item">
+                <a href="{{ route('vendas.index') }}" class="nav-item {{ request()->routeIs('vendas.*') ? 'active' : '' }}">
                     <i class="bi bi-cart nav-icon"></i> Vendas
                 </a>
                 <a href="{{ route('clientes.index') }}" class="nav-item {{ request()->routeIs('clientes.*') ? 'active' : '' }}">

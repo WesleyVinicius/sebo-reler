@@ -18,6 +18,10 @@ class Venda extends Model
         'valor_desconto',
     ];
 
+    protected $casts = [
+        'data' => 'datetime',
+    ];
+
     public function funcionario()
     {
         return $this->belongsTo(Funcionario::class, 'id_funcionario');
