@@ -10,6 +10,7 @@ use App\Http\Controllers\EditoraController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\LivroController;
+use App\Http\Controllers\RelatorioController;
 use App\Http\Controllers\VendaController;
 use Illuminate\Support\Facades\Route;
 
@@ -72,5 +73,9 @@ Route::middleware(['auth:funcionario'])->group(function () {
         // Rotas CRUD descontos
         Route::delete('/descontos/destruir-todos', [DescontoController::class, 'destroyAll'])->name('descontos.destroyAll');
         Route::resource('descontos', DescontoController::class)->parameters(['descontos' => 'desconto'])->only(['index', 'store', 'update', 'destroy']);
+
+        // Rotas Relatórios
+        Route::get('/relatorios/vendas', [RelatorioController::class, 'vendas'])->name('relatorios.vendas');
+        Route::get('/relatorios/vendas/imprimir', [RelatorioController::class, 'imprimir'])->name('relatorios.vendas.imprimir');
     });
 });

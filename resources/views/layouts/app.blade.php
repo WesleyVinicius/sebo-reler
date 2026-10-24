@@ -50,7 +50,7 @@
                     <a href="{{ route('descontos.index') }}" class="nav-item {{ request()->routeIs('descontos.*') ? 'active' : '' }}">
                         <i class="bi bi-percent nav-icon"></i> Descontos
                     </a>
-                    <a href="#" class="nav-item">
+                    <a href="{{ route('relatorios.vendas') }}" class="nav-item {{ request()->routeIs('relatorios.*') ? 'active' : '' }}">
                         <i class="bi bi-bar-chart nav-icon"></i> Relatórios
                     </a>
                     <a href="#" class="nav-item">
