@@ -1,5 +1,7 @@
 # Reler
 
+![Testes](https://github.com/WesleyVinicius/sebo-reler/actions/workflows/testes.yml/badge.svg?branch=master)
+
 Sistema web para gerenciamento de um sebo (livraria de livros usados), permitindo cadastrar livros, autores, editoras, clientes e registrar vendas com cálculo automático de desconto por faixa de valor.
 
 ## Tecnologias
