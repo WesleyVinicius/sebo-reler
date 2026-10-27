@@ -2,33 +2,34 @@
 
 ![Testes](https://github.com/WesleyVinicius/sebo-reler/actions/workflows/testes.yml/badge.svg?branch=master)
 
-Sistema web para gerenciamento de um sebo (livraria de livros usados), permitindo cadastrar livros, autores, editoras, clientes e registrar vendas com cálculo automático de desconto por faixa de valor.
+Sistema web para gerenciamento de um sebo fictício, desenvolvido para praticar Laravel. Permite cadastrar livros com vários exemplares e vários autores, controlar o estado de conservação, registrar vendas com desconto automático por faixa de valor e emitir relatórios de vendas por período. O acesso é separado por perfil, gerente e vendedor.
 
 ## Tecnologias
 
-- Laravel 13 (PHP 8.2+)
+- Laravel 13 com PHP 8.2 ou superior
 - PostgreSQL
-- Bootstrap 5 + Bootstrap Icons
-- Vite (compilação de assets)
-- Blade (template engine nativo do Laravel)
-- PHPUnit (testes)
+- Bootstrap 5 e Bootstrap Icons
+- Vite, para compilação de assets
+- Blade, o template engine nativo do Laravel
+- PHPUnit, para testes
+- GitHub Actions, para integração contínua
 
 ## Pré-requisitos
 
 Antes de instalar, tenha certeza de que sua máquina possui:
 
-- PHP >= 8.2
+- PHP 8.2 ou superior
 - Composer
 - PostgreSQL instalado e rodando
-- Node.js + npm
+- Node.js e npm
 
 ## Instalação
 
 ```bash
 
 # Clonar o repositório
-git clone <url-do-repositorio>
-cd sebo_reler
+git clone https://github.com/WesleyVinicius/sebo-reler.git
+cd sebo-reler
 
 # Instalar dependências do PHP
 composer install
@@ -52,7 +53,7 @@ DB_USERNAME=postgres
 DB_PASSWORD=sua_senha
 ```
 
-Crie o banco de dados (caso ainda não exista):
+Crie o banco de dados, caso ainda não exista:
 
 ```sql
 CREATE DATABASE sebo_reler;
@@ -71,7 +72,7 @@ Suba os dois processos necessários, em terminais separados:
 
 ```bash
 
-# Terminal 1 — compila e observa mudanças em CSS/JS
+# Terminal 1 — compila e observa mudanças em CSS e JS
 npm run dev
 ```
 
@@ -83,7 +84,7 @@ php artisan serve
 
 Acesse `http://127.0.0.1:8000/login`.
 
-Para criar o primeiro usuário de acesso (gerente), use o Tinker:
+Para criar o primeiro usuário de acesso, o gerente, use o Tinker:
 
 ```bash
 
@@ -106,41 +107,61 @@ Funcionario::create([
 ]);
 ```
 
+## Funcionalidades
+
 Após o login, o sistema disponibiliza:
+
 - **Dashboard** com visão geral do sebo
-- **Clientes**: listagem, cadastro e edição via modal, exclusão individual ou em massa
-- **Gêneros**: mesmo padrão de CRUD dos clientes
+- **Livros e exemplares:** cadastro de um livro com vários exemplares e vários autores, edição do grupo inteiro e exclusão que preserva os exemplares já vendidos
+- **Etiquetas** para impressão de cada exemplar
+- **Vendas:** busca de cliente por CPF e de exemplar, com desconto aplicado por faixa de valor
+- **Clientes, autores, editoras, gêneros e estados de conservação:** CRUD com modal e exclusão individual ou em massa
+
+Recursos exclusivos do perfil **gerente**:
+
+- **Funcionários:** cadastro e controle de acesso
+- **Descontos:** configuração das faixas de desconto
+- **Relatórios de vendas** por período, com versão para impressão
+
+O perfil **vendedor** acessa as rotas liberadas e não vê no menu os itens restritos ao gerente.
 
 ## Testes
 
-O projeto usa PHPUnit. Para rodar os testes:
+O projeto tem 68 testes automatizados com PHPUnit, entre testes de feature e de unidade, executados a cada push e pull request pelo GitHub Actions, com PostgreSQL 16 e PHP 8.4.
 
 ```bash
 
 php artisan test
 ```
 
-> ⚠️ Este é um projeto de estudo em desenvolvimento — a suíte de testes automatizados ainda está sendo construída.
+O que os testes cobrem:
+
+- **Login e autenticação:** acesso com credenciais válidas e inválidas e redirecionamento de visitantes
+- **Perfis de acesso:** o que gerente, vendedor e visitante podem acessar, e itens de menu ocultos por perfil
+- **Livros:** cadastro com vários exemplares e vários autores, validação de dados inválidos, atualização do grupo de exemplares, exclusão preservando exemplares vendidos, busca por título e desfazer o cadastro inteiro quando algo falha no meio
+- **Clientes e autores:** operações de CRUD
+- **Cálculo de desconto:** testes de unidade das faixas, inclusive sem faixas cadastradas
+
+Ainda sem testes: vendas e relatórios.
 
 ## Estrutura do projeto
 
 ```
-sebo_reler2/
+sebo-reler/
 ├── app/
-│   ├── Http/Controllers/     # ClienteController, GeneroController, AuthController...
-│   └── Models/               # Cliente, Genero, Livro, Venda, Funcionario...
+│   ├── Http/Controllers/     # Livro, Venda, Cliente, Autor, Relatorio, Auth...
+│   └── Models/               # Livro, Exemplar, Venda, Cliente, Desconto...
 ├── database/
-│   └── migrations/           # Estrutura das tabelas (Postgres)
+│   └── migrations/           # Estrutura das tabelas, PostgreSQL
 ├── resources/
-│   ├── views/
-│   │   ├── layouts/app.blade.php   # Layout base (sidebar + header + rodapé)
-│   │   ├── clientes/               # index + partials (_modal-form, _modal-scripts)
-│   │   └── generos/
-│   ├── css/
-│   │   ├── app.css                 # Só imports
-│   │   └── partials/               # variables, login, layout (CSS dividido por responsabilidade)
-│   └── js/app.js             # Bootstrap + script genérico de confirmação (form-confirmar)
-└── routes/web.php
+│   ├── views/                # Blade, com layout base e modais por módulo
+│   ├── css/                  # CSS dividido por responsabilidade
+│   └── js/app.js
+├── routes/web.php
+├── tests/
+│   ├── Feature/              # Testes de rotas e fluxos
+│   └── Unit/                 # Testes de regras isoladas
+└── .github/workflows/        # Pipeline de testes no GitHub Actions
 ```
 
 ## Contribuindo
@@ -148,9 +169,9 @@ sebo_reler2/
 Este é um projeto pessoal de estudo, mas sugestões e correções são bem-vindas:
 
 1. Faça um fork do projeto
-2. Crie uma branch para sua alteração (`git checkout -b minha-alteracao`)
-3. Commit suas mudanças (`git commit -m 'Descrição da alteração'`)
-4. Push para a branch (`git push origin minha-alteracao`)
+2. Crie uma branch para sua alteração: `git checkout -b minha-alteracao`
+3. Faça o commit: `git commit -m 'Descrição da alteração'`
+4. Envie para a branch: `git push origin minha-alteracao`
 5. Abra um Pull Request
 
 ## Licença
@@ -160,5 +181,6 @@ MIT
 ## Autor
 
 **Wesley Vinicius Fernandes**
+
 - GitHub: https://github.com/WesleyVinicius
 - LinkedIn: https://linkedin.com/in/wesleyviniciusf
