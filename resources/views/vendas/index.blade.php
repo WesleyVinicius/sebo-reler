@@ -37,7 +37,7 @@
                     <td>{{ $venda->id }}</td>
                     <td>{{ $venda->data->format('d/m/Y H:i') }}</td>
                     <td>{{ $venda->cliente->nome }}</td>
-                    <td>{{ $venda->funcionario->nome }}</td>
+                    <td>{{ $venda->funcionario->usuario }}</td>
                     <td class="text-center">{{ $venda->exemplares_count }}</td>
                     <td class="text-end">R$ {{ number_format($venda->valor_desconto, 2, ',', '.') }}</td>
                     <td class="text-end">R$ {{ number_format($venda->valor_total, 2, ',', '.') }}</td>

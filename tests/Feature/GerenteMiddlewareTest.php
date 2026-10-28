@@ -16,6 +16,8 @@ class GerenteMiddlewareTest extends TestCase
         return [
             'funcionarios' => ['/funcionarios'],
             'descontos' => ['/descontos'],
+            'relatorio de vendas' => ['/relatorios/vendas'],
+            'impressao de relatorio' => ['/relatorios/vendas/imprimir'],
         ];
     }
 

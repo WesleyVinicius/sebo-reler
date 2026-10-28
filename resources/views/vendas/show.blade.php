@@ -17,7 +17,7 @@
             </div>
             <div class="col-md-4">
                 <div class="text-muted small">Vendedor</div>
-                <div>{{ $venda->funcionario->nome }}</div>
+                <div>{{ $venda->funcionario->usuario }}</div>
             </div>
             <div class="col-md-4">
                 <div class="text-muted small">Data</div>

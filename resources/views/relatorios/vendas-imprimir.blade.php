@@ -81,7 +81,7 @@
         <tbody>
         @forelse ($porVendedor as $linha)
             <tr>
-                <td>{{ $linha->funcionario->nome }}</td>
+                <td>{{ $linha->funcionario->usuario }}</td>
                 <td class="centro">{{ $linha->quantidade }}</td>
                 <td class="dir">R$ {{ number_format($linha->total, 2, ',', '.') }}</td>
             </tr>
