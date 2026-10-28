@@ -14,7 +14,7 @@ class FuncionarioFactory extends Factory
     public function definition(): array
     {
         return [
-            'usuario' => fake()->unique()->userName(),
+            'usuario' => fake()->unique()->numerify('########'),
             'senha' => Hash::make('senha123'),
             'cpf' => fake()->unique()->numerify('###########'),
             'rg' => fake()->unique()->numerify('#########'),
