@@ -44,7 +44,7 @@ class RelatorioController extends Controller
             'vendas' => $vendas,
             'inicio' => $inicio,
             'fim' => $fim,
-            'geradoPor' => Auth::guard('funcionario')->user()->nome,
+            'geradoPor' => Auth::guard('funcionario')->user()->usuario,
             'geradoEm' => now(),
         ]);
     }
